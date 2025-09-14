@@ -1,5 +1,6 @@
-void main() {}
-
+//chain of responsibility (behavioral)
+// 1- decouple between sender and receiver
+// 2- sender doesn't have to know between receiver
 enum RequestType { conference, purchase }
 
 class Request {
@@ -49,4 +50,25 @@ class CEO extends Handler {
   void handleRequest(Request request) {
     print('ceo can approval anything');
   }
+}
+
+void approvalExample() {
+  final Handler mohamed = Director();
+  final Handler ahmed = VP();
+  final Handler marwan = CEO();
+  mohamed.setNext(ahmed);
+  ahmed.setNext(marwan);
+
+  final Request request = Request(type: RequestType.conference, amount: 500);
+  mohamed.handleRequest(request);
+
+  final Request request2 = Request(type: RequestType.purchase, amount: 1000);
+  mohamed.handleRequest(request2);
+
+  final Request request3 = Request(type: RequestType.purchase, amount: 2000);
+  mohamed.handleRequest(request3);
+}
+
+void main() {
+  approvalExample();
 }
