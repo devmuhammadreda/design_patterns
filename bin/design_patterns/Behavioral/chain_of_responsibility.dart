@@ -69,6 +69,70 @@ void approvalExample() {
   mohamed.handleRequest(request3);
 }
 
+// Example 2
+
+class SupportRequest {
+  final String type;
+  SupportRequest(this.type);
+}
+
+abstract class SupportHandler {
+  SupportHandler? next;
+
+  void handle(SupportRequest request) {
+    if (next != null) {
+      next!.handle(request);
+    } else {
+      print("Request not handled: ${request.type}");
+    }
+  }
+}
+
+class BillingSupport extends SupportHandler {
+  @override
+  void handle(SupportRequest request) {
+    if (request.type == "billing") {
+      print("Billing team handled request");
+    } else {
+      super.handle(request);
+    }
+  }
+}
+
+class TechnicalSupport extends SupportHandler {
+  @override
+  void handle(SupportRequest request) {
+    if (request.type == "technical") {
+      print("Technical team handled request");
+    } else {
+      super.handle(request);
+    }
+  }
+}
+
+class GeneralSupport extends SupportHandler {
+  @override
+  void handle(SupportRequest request) {
+    if (request.type == "general") {
+      print("General support handled request");
+    } else {
+      super.handle(request);
+    }
+  }
+}
+
+void supportExample() {
+  var supportChain = BillingSupport()
+    ..next = TechnicalSupport()
+    ..next!.next = GeneralSupport();
+
+  supportChain.handle(SupportRequest("billing"));
+  supportChain.handle(SupportRequest("technical"));
+  supportChain.handle(SupportRequest("general"));
+  supportChain.handle(SupportRequest("sales"));
+}
+
 void main() {
   approvalExample();
+  supportExample();
 }
