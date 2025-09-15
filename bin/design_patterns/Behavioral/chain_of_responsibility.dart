@@ -1,6 +1,14 @@
-//chain of responsibility (behavioral)
-// 1- decouple between sender and receiver
-// 2- sender doesn't have to know between receiver
+/*
+Chain Of Responsibility (Behavioral)
+The Chain of Responsibility design pattern is a behavioral pattern that allows an object to pass a request along a chain of potential handlers until it is handled by an appropriate object.
+This pattern promotes loose coupling between the sender of a request and its receivers,
+and it allows multiple objects to have a chance to handle the request without explicitly specifying the receiver.
+Suppose you are an employee in a company now you give a request of some approval to your manager if they can approve it ,
+then you can get response from them otherwise the request is passed to senior manager , if they can approve it ,
+then you can get response otherwise it goes to next person or level , 
+so here you as an employee is completely unaware of how your request is getting approved and how multiple people are handling your request ,
+this is Chain Responsibility Pattern .
+*/
 enum RequestType { conference, purchase }
 
 class Request {
