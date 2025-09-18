@@ -2,6 +2,7 @@
 Pattern using :  
 Representation grammar for a language (music m Formulas , ,mathematical expressions, etc.).
 Domain specific languages like SQL, Regex, etc.
+in dart we can use RegExp class to implement the interpreter pattern
 */
 
 import 'package:string_tokenizer_1/string_tokenizer_1.dart';
@@ -61,4 +62,12 @@ void main() {
 
   print('AND Expression Result: ${andExpr.interpret()}');
   print('OR Expression Result: ${orExpr.interpret()}');
+
+  // example
+  final input = 'Lion , and tigers , and bears , oh my!';
+  final regex = RegExp(r'lion|cat|dog|wolf|bear|human|tiger|lion');
+  final Iterable<RegExpMatch> matches = regex.allMatches(input.toLowerCase());
+  for (final match in matches) {
+    print('fount match: ${match.group(0)}');
+  }
 }
