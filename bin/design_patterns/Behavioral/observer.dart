@@ -1,7 +1,6 @@
 // observer pattern
 // when having an object that needs to be observed by one or more observers
 // decoupling observable and observer
-// used in mvc pattern
 
 abstract class Observer {
   void update();
